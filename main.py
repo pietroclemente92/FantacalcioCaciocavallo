@@ -44,7 +44,7 @@ def button(update: Update, context: CallbackContext) -> None:
     #message_id = update.callback_query.message.message_id
     #update_id = update.update_id
     if cqd == 'quotazioni':
-        quotazione(update, context)
+        query.edit_message_text(text=f"/quotazione")
     
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
