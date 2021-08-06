@@ -20,7 +20,7 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('Help!')
     
-def help(update, context):
+def portieri(update, context):
     """Send a message when the command /portieri is issued."""
     update.message.reply_text('Il regolamento dei portieri sono:')
 
@@ -45,6 +45,7 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    dp.add_handler(CommandHandler("portieri", portieri))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
