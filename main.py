@@ -20,6 +20,13 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione, /regolamento, /fanta_regolamento_leghe_private, /fanta_probabili_formazioni, /diretta')
     
+def commands(update, context):
+    keyboardmain = types.InlineKeyboardMarkup(row_width=2)
+    first_button = types.InlineKeyboardMarkup(text="button1", callback_data="first")
+    second_button = types.InlineKeyboardMarkup(text="button2", callback_data="second")
+    keyboardmain.add(first_button, second_button)
+    update.bot.send_message(update.effective_chat.id, "testing", reply_markup=keyboardmain)
+
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
 def quotazione(update, context):
@@ -77,6 +84,7 @@ def main():
     dp.add_handler(CommandHandler("fanta_probabili_formazioni", fanta_probabili_formazioni))
     dp.add_handler(CommandHandler("diretta", diretta))
     dp.add_handler(CommandHandler("regolamento", regolamento))
+    dp.add_handler(CommandHandler("commands", commands))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
