@@ -25,7 +25,7 @@ def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("Quotazioni", callback_data='/quotazioni'),
+            InlineKeyboardButton("Quotazioni", callback_data=HELP_BUTTON_CALLBACK_DATA),
             InlineKeyboardButton("Moduli", callback_data='/moduli'),
         ],
         [InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')],
@@ -40,7 +40,11 @@ def button(update: Update, context: CallbackContext) -> None:
     # CallbackQueries need to be answered, even if no notification to the user is needed
     # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
     query.answer()
-    query.edit_message_text(text=f"{query.data}")
+    cqd = update.callback_query.data
+    #message_id = update.callback_query.message.message_id
+    #update_id = update.update_id
+    if cqd == HELP_BUTTON_CALLBACK_DATA:
+        quotazione(update, context)
     
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
