@@ -30,9 +30,7 @@ def commands(update: Update, context: CallbackContext) -> None:
             InlineKeyboardButton("Regolamento FantacalcioCaciocavallo", callback_data='/regolamento'),
         ],
         [
-            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
-            InlineKeyboardButton("Regola Eriksen", callback_data='/caso_eriksen'),
-            InlineKeyboardButton("Bonus & Malus", callback_data='/bonus_malus'),
+            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -71,12 +69,6 @@ def timeout_formazione(update, context):
 def regolamento(update, context):
     update.message.reply_text('https://github.com/pietroclemente92/FantacalcioCaciocavallo/raw/master/Regolamento_Fantacalcio.docx')
     
-def caso_eriksen(update, context):
-    update.message.reply_text('In caso un giocatore subisca un infortunio che preveda la conclusione della stagione, morte, infarto che preveda la conclusione della stagione ed eventuali altri stati gravi che prevedono la conclusione della stagione, verrà tagliato dalla formazione del partecipante e può essere sostituito con un giocatore di pari o inferiore QA di acquisto.')
-    
-def bonus_malus(update, context):
-    update.message.reply_text('I bonus e i malus applicati sono i seguenti: goal segnato (+3), goal su rigore (+3), rigore sbagliato (-3), assist (+1), ammonizione (-0.5), espulsione (-1), autogoal (-3), portiere imbattuto (+1), goal subito da portiere (-1 per ognuno). Viene applicato il bonus/malus di rendimento in base al numeri di sufficienze di voti senza bonus e malus: otto (+1), nove (+2). Dieci (+3), undici (+5). I punteggi vengono invertiti in caso di tre sufficienze in giù.')
-    
 #fantacalcio commands - sites
 def fanta_regolamento_leghe_private(update, context):
     update.message.reply_text('https://www.fantacalcio.it/regolamenti/leghe-private')
@@ -113,8 +105,8 @@ def main():
     dp.add_handler(CommandHandler("quotazione", quotazione))
     dp.add_handler(CommandHandler("moduli", moduli))
     dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
-    dp.add_handler(CommandHandler("caso_eriksen", caso_eriksen)
-    dp.add_handler(CommandHandler("bonus_malus", bonus_malus)
+    #dp.add_handler(CommandHandler("caso_eriksen", caso_eriksen)
+    #dp.add_handler(CommandHandler("bonus_malus", bonus_malus)
     #dp.add_handler(CommandHandler("voto_ufficio", voto_ufficio)
     #dp.add_handler(CommandHandler("regola_rinvio", regola_rinvio)
     dp.add_handler(CommandHandler("fanta_regolamento_leghe_private", fanta_regolamento_leghe_private))    
