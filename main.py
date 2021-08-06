@@ -20,13 +20,18 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione, /regolamento, /fanta_regolamento_leghe_private, /fanta_probabili_formazioni, /diretta')
     
-def commands(update, context):
-    keyboardmain = types.InlineKeyboardMarkup(row_width=2)
-    first_button = types.InlineKeyboardMarkup(text="button1", callback_data="first")
-    second_button = types.InlineKeyboardMarkup(text="button2", callback_data="second")
-    keyboardmain.add(first_button, second_button)
-    update.bot.send_message(update.effective_chat.id, "testing", reply_markup=keyboardmain)
-
+def commands(update: Update, context: CallbackContext) -> None:
+    """Sends a message with three inline buttons attached."""
+    keyboard = [
+        [
+            InlineKeyboardButton("Option 1", callback_data='1'),
+            InlineKeyboardButton("Option 2", callback_data='2'),
+        ],
+        [InlineKeyboardButton("Option 3", callback_data='3')],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text('Please choose:', reply_markup=reply_markup)
+    
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
 def quotazione(update, context):
