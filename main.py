@@ -36,7 +36,7 @@ def timeout_formazione(update, context):
 
 def regolamento(update, context):
     update.message.reply_text('Download in corso!')
-    context.bot.sendDocument(update.effecttive_chat.id, "https://github.com/pietroclemente92/FantacalcioCaciocavallo/raw/master/Regolamento_Fantacalcio.docx")
+    context.bot.sendDocument(update.effecttive_chat.id, document=open('Regolamento_Fantacalcio.docx', 'rb'))
     
 def echo(update, context):
     """Echo the user message."""
