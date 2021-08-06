@@ -25,8 +25,9 @@ def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("/quotazione", callback_data='/quotazione'),
+            InlineKeyboardButton("Quotazione", callback_data='/quotazione'),
             InlineKeyboardButton("Moduli", callback_data='/moduli'),
+            InlineKeyboardButton("Regolamento FantacalcioCaciocavallo", callback_data='/regolamento'),
         ],
         [InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')],
     ]
