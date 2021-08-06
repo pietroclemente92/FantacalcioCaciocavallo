@@ -19,6 +19,10 @@ def start(update, context):
 def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('Help!')
+    
+def help(update, context):
+    """Send a message when the command /portieri is issued."""
+    update.message.reply_text('Il regolamento dei portieri sono:')
 
 def echo(update, context):
     """Echo the user message."""
