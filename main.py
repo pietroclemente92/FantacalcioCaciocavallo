@@ -18,7 +18,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione')
+    update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione, /regolamento, /fanta_regolamento_leghe_private, /fanta_probabili_formazioni, /diretta')
     
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
@@ -34,9 +34,18 @@ def timeout_formazione(update, context):
     """Send a message when the command /timeout_formazione is issued."""
     update.message.reply_text('La formazione va schierata entro 30 minuti antecedenti il primo anticipo di giornata. In caso di eventuali problemi contattare uno degli amministratori di lega. Qualora la formazione non venisse consegnata, verrà inserita in automatico quella schierata nella giornata precedente.')
 
+def regolamento(update, context):
+    update.message.reply_text('https://github.com/pietroclemente92/FantacalcioCaciocavallo/raw/master/Regolamento_Fantacalcio.docx')
+    
 #fantacalcio commands - sites
 def fanta_regolamento_leghe_private(update, context):
     update.message.reply_text('https://www.fantacalcio.it/regolamenti/leghe-private')
+    
+def fanta_probabili_formazioni(update, context):
+    update.message.reply_text('https://www.fantacalcio.it/probabili-formazioni-serie-a')
+    
+def diretta(update, context):
+    update.message.reply_text('https://www.diretta.it/serie-a')
     
 def echo(update, context):
     """Echo the user message."""
@@ -65,6 +74,9 @@ def main():
     dp.add_handler(CommandHandler("moduli", moduli))
     dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
     dp.add_handler(CommandHandler("fanta_regolamento_leghe_private", fanta_regolamento_leghe_private))    
+    dp.add_handler(CommandHandler("fanta_probabili_formazioni", fanta_probabili_formazioni))
+    dp.add_handler(CommandHandler("diretta", diretta))
+    dp.add_handler(CommandHandler("regolamento", regolamento))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
