@@ -25,7 +25,7 @@ def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("Quotazioni", callback_data=HELP_BUTTON_CALLBACK_DATA),
+            InlineKeyboardButton("Quotazioni", callback_data='quotazioni'),
             InlineKeyboardButton("Moduli", callback_data='/moduli'),
         ],
         [InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')],
@@ -43,7 +43,7 @@ def button(update: Update, context: CallbackContext) -> None:
     cqd = update.callback_query.data
     #message_id = update.callback_query.message.message_id
     #update_id = update.update_id
-    if cqd == HELP_BUTTON_CALLBACK_DATA:
+    if cqd == 'quotazioni':
         quotazione(update, context)
     
 #fantacalcio commands - regulation
