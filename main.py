@@ -21,7 +21,7 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione, /regolamento, /fanta_regolamento_leghe_private, /fanta_probabili_formazioni, /diretta')
     
-def start(update: Update, context: CallbackContext) -> None:
+def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
