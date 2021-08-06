@@ -21,20 +21,14 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione, /regolamento, /fanta_regolamento_leghe_private, /fanta_probabili_formazioni, /diretta')
     
-def commands(update: Update, context: CallbackContext) -> None:
+def start(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("/quotazione", callback_data='1'),
-            InlineKeyboardButton("/moduli", callback_data='2'),
-            InlineKeyboardButton("/timeout Formazione", callback_data='3')
+            InlineKeyboardButton("Quotazioni", callback_data='1'),
+            InlineKeyboardButton("Moduli", callback_data='2'),
         ],
-        [
-            InlineKeyboardButton("/regolamento", callback_data='4')
-            InlineKeyboardButton("/fanta_regolamento_leghe_private", callback_data='5')
-            InlineKeyboardButton("/fanta_probabili_formazioni", callback_data='6')
-            InlineKeyboardButton("/diretta", callback_data='7')
-        ],
+        [InlineKeyboardButton("Timeout Formazione", callback_data='3')],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text('Please choose:', reply_markup=reply_markup)
