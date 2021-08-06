@@ -18,10 +18,10 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('I comandi sono: /help, /quotazione_mercato')
+    update.message.reply_text('I comandi sono: /help, /quotazione')
     
-def qutazione(update, context):
-    """Send a message when the command /quotazione_mercato is issued."""
+def quotazione(update, context):
+    """Send a message when the command /quotazione is issued."""
     update.message.reply_text('Quando un giocatore verrà chiamato, sarà considerata come base d’asta la sua quotazione attuale (QA al momento dell’asta) della lista di Fantacalcio. È necessario rimanere sempre con i crediti sufficienti per completare la propria rosa. ')
 
 def echo(update, context):
@@ -45,7 +45,7 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
-    dp.add_handler(CommandHandler("quotazione_mercato", quotazione))
+    dp.add_handler(CommandHandler("quotazione", quotazione))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
