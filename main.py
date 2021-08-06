@@ -25,13 +25,13 @@ def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("Quotazioni", callback_data='1'),
-            InlineKeyboardButton("Moduli", callback_data='2'),
+            InlineKeyboardButton("Quotazioni", callback_data='/quotazioni'),
+            InlineKeyboardButton("Moduli", callback_data='/moduli'),
         ],
-        [InlineKeyboardButton("Timeout Formazione", callback_data='3')],
+        [InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text('Please choose:', reply_markup=reply_markup)
+    update.message.reply_text('Comandi disponibili', reply_markup=reply_markup)
     
 def button(update: Update, context: CallbackContext) -> None:
     """Parses the CallbackQuery and updates the message text."""
@@ -40,7 +40,7 @@ def button(update: Update, context: CallbackContext) -> None:
     # CallbackQueries need to be answered, even if no notification to the user is needed
     # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
     query.answer()
-    query.edit_message_text(text=f"Selected option: {query.data}")
+    query.edit_message_text(text=f"{query.data}")
     
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
