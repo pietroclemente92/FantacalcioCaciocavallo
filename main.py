@@ -37,7 +37,6 @@ def commands(update: Update, context: CallbackContext) -> None:
         [
             InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
             InlineKeyboardButton("Regola Rinvio", callback_data='/regola_rinvio'),
-            InlineKeyboardButton("Bonus & Malus", callback_data='/bonus_malus'),
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
