@@ -44,7 +44,10 @@ def button(update: Update, context: CallbackContext) -> None:
     #message_id = update.callback_query.message.message_id
     #update_id = update.update_id
     if cqd == 'quotazioni':
-        quotazione(bot, update)
+        testing(update, context)
+        
+def testing(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text("Use /start to test this bot.")
     
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
