@@ -25,25 +25,19 @@ def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("Quotazione", callback_data='1'),
-            InlineKeyboardButton("Moduli", callback_data='2'),
+            InlineKeyboardButton("/quotazione", callback_data='1'),
+            InlineKeyboardButton("/moduli", callback_data='2'),
+            InlineKeyboardButton("/timeout Formazione", callback_data='3')
         ],
-        [InlineKeyboardButton("Timeout Formazione", callback_data='3')],
+        [
+            InlineKeyboardButton("/regolamento", callback_data='4')
+            InlineKeyboardButton("/fanta_regolamento_leghe_private", callback_data='5')
+            InlineKeyboardButton("/fanta_probabili_formazioni", callback_data='6')
+            InlineKeyboardButton("/diretta", callback_data='7')
+        ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text('Please choose:', reply_markup=reply_markup)
-    
-def button(update: Update, context: CallbackContext) -> None:
-    """Parses the CallbackQuery and updates the message text."""
-    query = update.callback_query
-
-    # CallbackQueries need to be answered, even if no notification to the user is needed
-    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
-    query.answer()
-    if(query.data == '1'){
-       dp.add_handler(CommandHandler("quotazione", quotazione))
-    }
-    #query.edit_message_text(text=f"Selected option: {query.data}")
     
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
