@@ -25,7 +25,7 @@ def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("Quotazioni", callback_data='quotazioni'),
+            InlineKeyboardButton("/quotazione", callback_data='/quotazione'),
             InlineKeyboardButton("Moduli", callback_data='/moduli'),
         ],
         [InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')],
@@ -40,11 +40,11 @@ def button(update: Update, context: CallbackContext) -> None:
     # CallbackQueries need to be answered, even if no notification to the user is needed
     # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
     query.answer()
-    cqd = update.callback_query.data
+    #cqd = update.callback_query.data
     #message_id = update.callback_query.message.message_id
     #update_id = update.update_id
-    if cqd == 'quotazioni':
-        testing(update, context)
+    #if cqd == '/quotazione':
+    query.edit_message_text(text=f"Cliccare sul comando: {query.data}")
         
 def testing(update: Update, context: CallbackContext) -> None:
     update.message.reply_text("Use /start to test this bot.")
