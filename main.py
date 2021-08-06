@@ -1,28 +1,111 @@
-#!/usr/bin/python
+import logging
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+import os
+PORT = int(os.environ.get('PORT', 5000))
 
-# This is a simple echo bot using the decorator mechanism.
-# It echoes any incoming text messages.
+# Enable logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
 
-import telebot
+logger = logging.getLogger(__name__)
+TOKEN = '1734872566:AAFuWSq0o5tF9ebLlH5C1XtZ0XgzLOyUCyQ'
 
-API_TOKEN = '<api_token>'
+# Define a few command handlers. These usually take the two arguments update and
+# context. Error handlers also receive the raised TelegramError object in error.
+def start(update, context):
+    """Send a message when the command /start is issued."""
+    update.message.reply_text('Hi!')
 
-bot = telebot.TeleBot(API_TOKEN)
+def help(update, context):
+    """Send a message when the command /help is issued."""
+    update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione')
+    
+#fantacalcio commands - regulation
+#---------------------------------------------------------------------------------------------------------------------------------------------
+def quotazione(update, context):
+    """Send a message when the command /quotazione is issued."""
+    update.message.reply_text('Quando un giocatore verrà chiamato, sarà considerata come base d’asta la sua quotazione attuale (QA al momento dell’asta) della lista di Fantacalcio. È necessario rimanere sempre con i crediti sufficienti per completare la propria rosa. ')
 
+def moduli(update, context):
+    """Send a message when the command /moduli is issued."""
+    update.message.reply_text('I moduli possibili sono: 5-3-2, 5-4-1, 4-3-3, 4-4-2, 3-4-3, 3-5-2.')  
+    
+def timeout_formazione(update, context):
+    """Send a message when the command /timeout_formazione is issued."""
+    update.message.reply_text('La formazione va schierata entro 30 minuti antecedenti il primo anticipo di giornata. In caso di eventuali problemi contattare uno degli amministratori di lega. Qualora la formazione non venisse consegnata, verrà inserita in automatico quella schierata nella giornata precedente.')
 
-# Handle '/start' and '/help'
-@bot.message_handler(commands=['help', 'start'])
-def send_welcome(message):
-    bot.reply_to(message, """\
-Hi there, I am EchoBot.
-I am here to echo your kind words back to you. Just say anything nice and I'll say the exact same thing to you!\
-""")
+def regolamento(update, context):
+    update.message.reply_text('Download in corso!')
+    context.bot.sendDocument(update.effecttive_chat.id, "https://github.com/pietroclemente92/FantacalcioCaciocavallo/edit/master/Regolamento_Fantacalcio.docx")
+    
+#fantacalcio commands - soccer sites
+#---------------------------------------------------------------------------------------------------------------------------------------------
+def diretta(update, context):
+    """Send a message when the command /diretta is issued."""
+    update.message.reply_text('https://www.diretta.it/serie-a/')
+    
+def fantagazzetta_serie(update, context):
+    """Send a message when the command /fantagazzetta_serie is issued."""
+    update.message.reply_text('https://www.fantacalcio.it/serie-a')
+    
+def fantagazzetta_regolamento_leghe_private(update, context):
+    """Send a message when the command /fantagazzetta_regolamento_leghe_private is issued."""
+    update.message.reply_text('https://www.fantacalcio.it/regolamenti/leghe-private')
+    
+def fantagazzetta_probabili_formazioni(update, context):
+    """Send a message when the command /fantagazzetta_probabili_formazioni is issued."""
+    update.message.reply_text('https://www.fantacalcio.it/probabili-formazioni-serie-a')
+    
+def echo(update, context):
+    """Echo the user message."""
+    update.message.reply_text(update.message.text)
 
+def error(update, context):
+    """Log Errors caused by Updates."""
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
 
-# Handle all other messages with content_type 'text' (content_types defaults to ['text'])
-@bot.message_handler(func=lambda message: True)
-def echo_message(message):
-    bot.reply_to(message, message.text)
+def main():
+    """Start the bot."""
+    # Create the Updater and pass it your bot's token.
+    # Make sure to set use_context=True to use the new context based callbacks
+    # Post version 12 this will no longer be necessary
+    updater = Updater(TOKEN, use_context=True)
 
+    # Get the dispatcher to register handlers
+    dp = updater.dispatcher
 
-bot.polling()
+    # on different commands - answer in Telegram
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(CommandHandler("help", help))
+    
+    #fantacalcio commands - regulation
+    dp.add_handler(CommandHandler("quotazione", quotazione))
+    dp.add_handler(CommandHandler("moduli", moduli))
+    dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
+    dp.add_handler(CommandHandler("regolamento", regolamento))
+    
+    #fantacalcio commands - soccer sites
+    dp.add_handler(CommandHandler("diretta", diretta))
+    dp.add_handler(CommandHandler("fantagazzetta_serie", fantagazzetta_serie))
+    dp.add_handler(CommandHandler("fantagazzetta_regolamento_leghe_private", fantagazzetta_regolamento_leghe_private))
+    dp.add_handler(CommandHandler("fantagazzetta_probabili_formazioni", fantagazzetta_probabili_formazioni))
+
+    # on noncommand i.e message - echo the message on Telegram
+    dp.add_handler(MessageHandler(Filters.text, echo))
+
+    # log all errors
+    dp.add_error_handler(error)
+
+    # Start the Bot
+    updater.start_webhook(listen="0.0.0.0",
+                          port=int(PORT),
+                          url_path=TOKEN)
+    updater.bot.setWebhook('https://fantacalciocaciocavallo.herokuapp.com/' + TOKEN)
+
+    # Run the bot until you press Ctrl-C or the process receives SIGINT,
+    # SIGTERM or SIGABRT. This should be used most of the time, since
+    # start_polling() is non-blocking and will stop the bot gracefully.
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
