@@ -36,21 +36,7 @@ def timeout_formazione(update, context):
 
 #fantacalcio commands - soccer sites
 #---------------------------------------------------------------------------------------------------------------------------------------------
-def diretta(update, context):
-    """Send a message when the command /diretta is issued."""
-    update.message.reply_text('https://www.diretta.it/serie-a/')
-    
-def fantagazzettaSerie(update, context):
-    """Send a message when the command /fantagazzetta_serie is issued."""
-    update.message.reply_text('https://www.fantacalcio.it/serie-a')
-    
-def fantagazzettaRegolamento(update, context):
-    """Send a message when the command /fantagazzetta_regolamento_leghe_private is issued."""
-    update.message.reply_text('https://www.fantacalcio.it/regolamenti/leghe-private')
-    
-def fantagazzettaProbabiliFormazioni(update, context):
-    """Send a message when the command /fantagazzetta_probabili_formazioni is issued."""
-    update.message.reply_text('https://www.fantacalcio.it/probabili-formazioni-serie-a')
+
     
 def echo(update, context):
     """Echo the user message."""
@@ -81,10 +67,7 @@ def main():
     #dp.add_handler(CommandHandler("regolamento", regolamento))
     
     #fantacalcio commands - soccer sites
-    dp.add_handler(CommandHandler("diretta", diretta))
-    dp.add_handler(CommandHandler("fantagazzetta_serie", fantagazzettaSerie))
-    dp.add_handler(CommandHandler("fantagazzetta_regolamento_leghe_private", fantagazzettaRegolamento))
-    dp.add_handler(CommandHandler("fantagazzetta_probabili_formazioni", fantagazzettaProbabiliFormazioni))
+    
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
