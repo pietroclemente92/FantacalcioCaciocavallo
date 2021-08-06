@@ -1,5 +1,6 @@
 import logging
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler, CallbackContext
 import os
 PORT = int(os.environ.get('PORT', 5000))
 
@@ -20,7 +21,7 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione, /regolamento, /fanta_regolamento_leghe_private, /fanta_probabili_formazioni, /diretta')
     
-def commands(update, context):
+def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
@@ -31,6 +32,16 @@ def commands(update, context):
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text('Please choose:', reply_markup=reply_markup)
+    
+def button(update: Update, context: CallbackContext) -> None:
+    """Parses the CallbackQuery and updates the message text."""
+    query = update.callback_query
+
+    # CallbackQueries need to be answered, even if no notification to the user is needed
+    # Some clients may have trouble otherwise. See https://core.telegram.org/bots/api#callbackquery
+    query.answer()
+
+    query.edit_message_text(text=f"Selected option: {query.data}")
     
 #fantacalcio commands - regulation
 #---------------------------------------------------------------------------------------------------------------------------------------------
@@ -90,6 +101,8 @@ def main():
     dp.add_handler(CommandHandler("diretta", diretta))
     dp.add_handler(CommandHandler("regolamento", regolamento))
     dp.add_handler(CommandHandler("commands", commands))
+    
+    dp.add_handler(CallbackQueryHandler(button))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
