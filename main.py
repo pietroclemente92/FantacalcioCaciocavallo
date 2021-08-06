@@ -34,10 +34,6 @@ def commands(update: Update, context: CallbackContext) -> None:
             InlineKeyboardButton("Regola Eriksen", callback_data='/caso_eriksen'),
             InlineKeyboardButton("Bonus & Malus", callback_data='/bonus_malus'),
         ],
-        [
-            InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
-            InlineKeyboardButton("Regola Rinvio", callback_data='/regola_rinvio'),
-        ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text('Comandi disponibili', reply_markup=reply_markup)
@@ -126,7 +122,7 @@ def main():
     dp.add_handler(CommandHandler("caso_eriksen", caso_eriksen)
     dp.add_handler(CommandHandler("bonus_malus", bonus_malus)
     dp.add_handler(CommandHandler("voto_ufficio", voto_ufficio)
-    dp.add_handler(CommandHandler("voto_ufficio", regola_rinvio)
+    dp.add_handler(CommandHandler("regola_rinvio", regola_rinvio)
     dp.add_handler(CommandHandler("fanta_regolamento_leghe_private", fanta_regolamento_leghe_private))    
     dp.add_handler(CommandHandler("fanta_probabili_formazioni", fanta_probabili_formazioni))
     dp.add_handler(CommandHandler("diretta", diretta))
