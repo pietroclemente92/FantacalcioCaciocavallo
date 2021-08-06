@@ -34,8 +34,6 @@ def timeout_formazione(update, context):
     """Send a message when the command /timeout_formazione is issued."""
     update.message.reply_text('La formazione va schierata entro 30 minuti antecedenti il primo anticipo di giornata. In caso di eventuali problemi contattare uno degli amministratori di lega. Qualora la formazione non venisse consegnata, verrà inserita in automatico quella schierata nella giornata precedente.')
 
-
-    
 #fantacalcio commands - soccer sites
 #---------------------------------------------------------------------------------------------------------------------------------------------
 def diretta(update, context):
