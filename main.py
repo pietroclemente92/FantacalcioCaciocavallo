@@ -34,10 +34,6 @@ def timeout_formazione(update, context):
     """Send a message when the command /timeout_formazione is issued."""
     update.message.reply_text('La formazione va schierata entro 30 minuti antecedenti il primo anticipo di giornata. In caso di eventuali problemi contattare uno degli amministratori di lega. Qualora la formazione non venisse consegnata, verrà inserita in automatico quella schierata nella giornata precedente.')
 
-#fantacalcio commands - soccer sites
-#---------------------------------------------------------------------------------------------------------------------------------------------
-
-    
 def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
@@ -64,10 +60,7 @@ def main():
     dp.add_handler(CommandHandler("quotazione", quotazione))
     dp.add_handler(CommandHandler("moduli", moduli))
     dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
-    #dp.add_handler(CommandHandler("regolamento", regolamento))
-    
-    #fantacalcio commands - soccer sites
-    
+    #dp.add_handler(CommandHandler("regolamento", regolamento))    
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
