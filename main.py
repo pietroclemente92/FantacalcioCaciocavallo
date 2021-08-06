@@ -20,6 +20,8 @@ def help(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione')
     
+#fantacalcio commands - regulation
+#---------------------------------------------------------------------------------------------------------------------------------------------
 def quotazione(update, context):
     """Send a message when the command /quotazione is issued."""
     update.message.reply_text('Quando un giocatore verrà chiamato, sarà considerata come base d’asta la sua quotazione attuale (QA al momento dell’asta) della lista di Fantacalcio. È necessario rimanere sempre con i crediti sufficienti per completare la propria rosa. ')
@@ -31,6 +33,24 @@ def moduli(update, context):
 def timeout_formazione(update, context):
     """Send a message when the command /timeout_formazione is issued."""
     update.message.reply_text('La formazione va schierata entro 30 minuti antecedenti il primo anticipo di giornata. In caso di eventuali problemi contattare uno degli amministratori di lega. Qualora la formazione non venisse consegnata, verrà inserita in automatico quella schierata nella giornata precedente.')
+
+#fantacalcio commands - soccer sites
+#---------------------------------------------------------------------------------------------------------------------------------------------
+def diretta(update, context):
+    """Send a message when the command /diretta is issued."""
+    update.message.reply_text('https://www.diretta.it/serie-a/')
+    
+def fantagazzetta_serie(update, context):
+    """Send a message when the command /fantagazzetta_serie is issued."""
+    update.message.reply_text('https://www.fantacalcio.it/serie-a')
+    
+def fantagazzetta_regolamento_leghe_private(update, context):
+    """Send a message when the command /fantagazzetta_regolamento_leghe_private is issued."""
+    update.message.reply_text('https://www.fantacalcio.it/regolamenti/leghe-private')
+    
+def fantagazzetta_probabili_formazioni(update, context):
+    """Send a message when the command /fantagazzetta_probabili_formazioni is issued."""
+    update.message.reply_text('https://www.fantacalcio.it/probabili-formazioni-serie-a')
     
 def echo(update, context):
     """Echo the user message."""
@@ -53,9 +73,17 @@ def main():
     # on different commands - answer in Telegram
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
+    
+    #fantacalcio commands - regulation
     dp.add_handler(CommandHandler("quotazione", quotazione))
     dp.add_handler(CommandHandler("moduli", moduli))
     dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
+    
+    #fantacalcio commands - soccer sites
+    dp.add_handler(CommandHandler("diretta", diretta))
+    dp.add_handler(CommandHandler("fantagazzetta_serie", fantagazzetta_serie))
+    dp.add_handler(CommandHandler("fantagazzetta_regolamento_leghe_private", fantagazzetta_regolamento_leghe_private))
+    dp.add_handler(CommandHandler("fantagazzetta_probabili_formazioni", fantagazzetta_probabili_formazioni))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
