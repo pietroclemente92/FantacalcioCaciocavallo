@@ -18,12 +18,20 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('I comandi sono: /help, /quotazione')
+    update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione')
     
 def quotazione(update, context):
     """Send a message when the command /quotazione is issued."""
     update.message.reply_text('Quando un giocatore verrà chiamato, sarà considerata come base d’asta la sua quotazione attuale (QA al momento dell’asta) della lista di Fantacalcio. È necessario rimanere sempre con i crediti sufficienti per completare la propria rosa. ')
 
+def moduli(update, context):
+    """Send a message when the command /moduli is issued."""
+    update.message.reply_text('I moduli possibili sono: 5-3-2, 5-4-1, 4-3-3, 4-4-2, 3-4-3, 3-5-2.')  
+    
+def timeout_formazione(update, context):
+    """Send a message when the command /timeout_formazione is issued."""
+    update.message.reply_text('La formazione va schierata entro 30 minuti antecedenti il primo anticipo di giornata. In caso di eventuali problemi contattare uno degli amministratori di lega. Qualora la formazione non venisse consegnata, verrà inserita in automatico quella schierata nella giornata precedente.')
+    
 def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
@@ -46,6 +54,8 @@ def main():
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("quotazione", quotazione))
+    dp.add_handler(CommandHandler("moduli", moduli))
+    dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
