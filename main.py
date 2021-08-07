@@ -27,10 +27,11 @@ def commands(update: Update, context: CallbackContext) -> None:
         [
             InlineKeyboardButton("Quotazione", callback_data='/quotazione'),
             InlineKeyboardButton("Moduli", callback_data='/moduli'),
-            InlineKeyboardButton("Regolamento FantacalcioCaciocavallo", callback_data='/regolamento'),
+            InlineKeyboardButton("Regolamento Cacio", callback_data='/regolamento'),
         ],
         [
-            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')
+            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
+            InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio')
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -68,6 +69,9 @@ def timeout_formazione(update, context):
 
 def regolamento(update, context):
     update.message.reply_text('https://github.com/pietroclemente92/FantacalcioCaciocavallo/raw/master/Regolamento_Fantacalcio.docx')
+    
+def voto_ufficio(update, context):
+    update.message.reply_text('In caso di eventuali buchi nella formazione, ogni giocatore avrà diritto ad una riserva d’ufficio dal voto 4 (giocatore di movimento e portiere).')
     
 #fantacalcio commands - sites
 def fanta_regolamento_leghe_private(update, context):
@@ -107,7 +111,7 @@ def main():
     dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
     #dp.add_handler(CommandHandler("caso_eriksen", caso_eriksen)
     #dp.add_handler(CommandHandler("bonus_malus", bonus_malus)
-    #dp.add_handler(CommandHandler("voto_ufficio", voto_ufficio)
+    dp.add_handler(CommandHandler("voto_ufficio", voto_ufficio)
     #dp.add_handler(CommandHandler("regola_rinvio", regola_rinvio)
     dp.add_handler(CommandHandler("fanta_regolamento_leghe_private", fanta_regolamento_leghe_private))    
     dp.add_handler(CommandHandler("fanta_probabili_formazioni", fanta_probabili_formazioni))
