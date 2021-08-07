@@ -27,10 +27,11 @@ def commands(update: Update, context: CallbackContext) -> None:
         [
             InlineKeyboardButton("Quotazione", callback_data='/quotazione'),
             InlineKeyboardButton("Moduli", callback_data='/moduli'),
-            InlineKeyboardButton("Regolamento Cacio", callback_data='/regolamento'),
+            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
+            InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
         ],
         [
-            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')
+            InlineKeyboardButton("Regolamento Cacio", callback_data='/regolamento')
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
