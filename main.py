@@ -19,9 +19,9 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Benevenuto partecipante. Io sono CacioBot, il tuo assistente personale. Se è la prima volta che mi utilizzi, clicca o scrivi /commands per visionare la tabella con le varie opzioni.')
+    update.message.reply_text('Benevenuto partecipante. Io sono CacioBot, il tuo assistente personale. Se è la prima volta che mi utilizzi, clicca o scrivi /commands_fantacacio per visionare la tabella con le varie opzioni.')
     
-def commands(update: Update, context: CallbackContext) -> None:
+def commands_fantacacio(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
@@ -34,7 +34,7 @@ def commands(update: Update, context: CallbackContext) -> None:
             InlineKeyboardButton("Regola Rinvio", callback_data='/regola_rinvio'),
             InlineKeyboardButton("Regola Infortuni Gravi", callback_data='/regola_infortuni_gravi'),
             InlineKeyboardButton("Bonus & Malus", callback_data='/bonus_malus'),
-            InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
+            InlineKeyboardButton("Gestione Competizioni", callback_data='/gestione_competizioni'),
         ],
         [
             InlineKeyboardButton("Regolamento Cacio", callback_data='/regolamento')
@@ -83,11 +83,13 @@ def regola_rinvio(update, context):
     update.message.reply_text('In caso di rinvio di una partita oltre il successivo turno di campionato, sarà assegnato il 6 d’ufficio a tutti i giocatori delle due squadre in questione.')
     
 def regola_infortuni_gravi(update, context):
-    update.message.reply_text('In caso un giocatore subisca un infortunio che preveda la conclusione della stagione, morte, infarto che preveda la conclusione della stagione ed eventuali altri stati gravi che prevedono la conclusione della stagione, verrà tagliato dalla formazione del partecipante e può essere sostituito con un giocatore di pari o inferiore QA di acquisto.')
+    update.message.reply_text('In caso un giocatore subisca un infortunio che preveda la conclusione della stagione, morte, infarto ed eventuali altri stati gravi che prevedono l’allontanamento dai campi, verrà tagliato dalla formazione del partecipante e potrà essere sostituito con un giocatore di pari o inferiore QA di acquisto.')
     
 def bonus_malus(update, context):
     update.message.reply_text('I bonus e i malus applicati sono i seguenti: goal segnato (+3), goal su rigore (+3), rigore sbagliato (-3), assist (+1), ammonizione (-0.5), espulsione (-1), autogoal (-3), portiere imbattuto (+1), goal subito da portiere (-1 per ognuno). Viene applicato il bonus/malus di rendimento in base al numeri di sufficienze di voti senza bonus e malus: otto (+1), nove (+2). Dieci (+3), undici (+5). I punteggi vengono invertiti in caso di tre sufficienze in giù.')
     
+def gestione_competizioni(update, context):
+    update.message.reply_text('La competizione prevede un campionato con classifica tabulare e una coppa con fase a gironi ed eliminazione diretta. La coppa prevede due gruppi di quattro partecipanti nel quale i primi due classificati di entrambi i gruppi passeranno alla fase ad eliminazione diretta. Durante la seguente fase i partecipanti si sfideranno in due partita (andata e ritorno). In caso di eventuali pareggi, si decreterà un vincitore tramite i punti fantacalcio accumulati durante le due sfide. Tuttavia, qualora non bastasse tale metodo, si decreterà un vincente tramite tempi supplementari e rigori. Il campionato prevede una sfida a modalità tutti contro tutti a giornate. In caso di eventuali pareggi nei punteggi accumulati, si provvederà a tener conto dei punti fantacalcio o eventuali differenze reti.')
     
 #fantacalcio commands - sites
 def fanta_regolamento_leghe_private(update, context):
@@ -129,13 +131,16 @@ def main():
     dp.add_handler(CommandHandler("regola_rinvio", regola_rinvio))
     dp.add_handler(CommandHandler("regola_infortuni_gravi", regola_infortuni_gravi))
     dp.add_handler(CommandHandler("bonus_malus", bonus_malus))
+    dp.add_handler(CommandHandler("gestione_competizioni", gestione_competizioni))
+    dp.add_handler(CommandHandler("regolamento", regolamento))
     
+    #fantacalcio commands - sites
     dp.add_handler(CommandHandler("fanta_regolamento_leghe_private", fanta_regolamento_leghe_private))    
     dp.add_handler(CommandHandler("fanta_probabili_formazioni", fanta_probabili_formazioni))
     dp.add_handler(CommandHandler("diretta", diretta))
-    dp.add_handler(CommandHandler("regolamento", regolamento))
-    dp.add_handler(CommandHandler("commands", commands))
     
+    #fantacalcio commands - tables
+    dp.add_handler(CommandHandler("commands", commands_fantacacio))
     dp.add_handler(CallbackQueryHandler(button))
 
     # on noncommand i.e message - echo the message on Telegram
