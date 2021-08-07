@@ -140,7 +140,7 @@ def main():
     dp.add_handler(CommandHandler("diretta", diretta))
     
     #fantacalcio commands - tables
-    dp.add_handler(CommandHandler("commands", commands_fantacacio))
+    dp.add_handler(CommandHandler("commands_fantacacio", commands_fantacacio))
     dp.add_handler(CallbackQueryHandler(button))
 
     # on noncommand i.e message - echo the message on Telegram
