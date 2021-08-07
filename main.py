@@ -31,7 +31,7 @@ def commands(update: Update, context: CallbackContext) -> None:
         ],
         [
             InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
-            InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio')
+            InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
