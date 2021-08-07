@@ -31,6 +31,12 @@ def commands(update: Update, context: CallbackContext) -> None:
             InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
         ],
         [
+            InlineKeyboardButton("Quotazione", callback_data='/quotazione'),
+            InlineKeyboardButton("Moduli", callback_data='/moduli'),
+            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
+            InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
+        ],
+        [
             InlineKeyboardButton("Regolamento Cacio", callback_data='/regolamento')
         ],
     ]
