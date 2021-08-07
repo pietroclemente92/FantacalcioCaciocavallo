@@ -19,7 +19,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Benevenuto partecipante. Io sono CacioBot, il tuo assistente personale. Se è la prima volta che mi utilizzi, clicca o scrivi /commands_fantacacio per visionare la tabella con le varie opzioni.')
+    update.message.reply_text('Benevenuto partecipante. Io sono CacioBot, il tuo assistente personale. Se è la prima volta che mi utilizzi, clicca o scrivi /commands_fantacacio per visionare la tabella dei comandi fantacaio, altrimenti utilizza /commands_sites per visionare la tabella dei comandi siti.')
     
 def commands_fantacacio(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
@@ -95,7 +95,7 @@ def regolamento(update, context):
     update.message.reply_text('https://github.com/pietroclemente92/FantacalcioCaciocavallo/raw/master/Regolamento_Fantacalcio.docx')
     
 def voto_ufficio(update, context):
-    update.message.reply_text('In caso di eventuali buchi nella formazione, ogni giocatore avrà diritto ad una riserva d’ufficio dal voto 4 [giocatore di movimento e portiere].')
+    update.message.reply_text('In caso di eventuali buchi nella formazione, ogni partecipante avrà diritto ad una e una sola riserva d’ufficio dal voto 4 [giocatore di movimento e portiere].')
 
 def regola_rinvio(update, context):
     update.message.reply_text('In caso di rinvio di una partita oltre il successivo turno di campionato, sarà assegnato il 6 d’ufficio a tutti i giocatori delle due squadre in questione.')
