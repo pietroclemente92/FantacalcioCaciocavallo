@@ -19,7 +19,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('I comandi sono: /quotazione, /moduli, /timeout_formazione, /regolamento, /fanta_regolamento_leghe_private, /fanta_probabili_formazioni, /diretta')
+    update.message.reply_text('Benevenuto partecipante. Io sono CacioBot, il tuo assistente personale. Se è la prima volta che mi utilizzi, clicca o scrivi /commands per visionare la tabella con le varie opzioni.')
     
 def commands(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
@@ -69,6 +69,9 @@ def timeout_formazione(update, context):
 def regolamento(update, context):
     update.message.reply_text('https://github.com/pietroclemente92/FantacalcioCaciocavallo/raw/master/Regolamento_Fantacalcio.docx')
     
+def voto_ufficio(update, context):
+    update.message.reply_text('In caso di eventuali buchi nella formazione, ogni giocatore avrà diritto ad una riserva d’ufficio dal voto 4 [giocatore di movimento e portiere].')
+    
 #fantacalcio commands - sites
 def fanta_regolamento_leghe_private(update, context):
     update.message.reply_text('https://www.fantacalcio.it/regolamenti/leghe-private')
@@ -105,10 +108,8 @@ def main():
     dp.add_handler(CommandHandler("quotazione", quotazione))
     dp.add_handler(CommandHandler("moduli", moduli))
     dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
-    #dp.add_handler(CommandHandler("caso_eriksen", caso_eriksen)
-    #dp.add_handler(CommandHandler("bonus_malus", bonus_malus)
-    #dp.add_handler(CommandHandler("voto_ufficio", voto_ufficio)
-    #dp.add_handler(CommandHandler("regola_rinvio", regola_rinvio)
+    dp.add_handler(CommandHandler("voto_ufficio", voto_ufficio))
+    
     dp.add_handler(CommandHandler("fanta_regolamento_leghe_private", fanta_regolamento_leghe_private))    
     dp.add_handler(CommandHandler("fanta_probabili_formazioni", fanta_probabili_formazioni))
     dp.add_handler(CommandHandler("diretta", diretta))
