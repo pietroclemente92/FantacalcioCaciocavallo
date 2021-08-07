@@ -25,19 +25,37 @@ def commands_fantacacio(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
     keyboard = [
         [
-            InlineKeyboardButton("Quotazione", callback_data='/quotazione'),
-            InlineKeyboardButton("Moduli", callback_data='/moduli'),
             InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
             InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
         ],
         [
+            InlineKeyboardButton("Quotazione", callback_data='/quotazione'),
+            InlineKeyboardButton("Moduli", callback_data='/moduli'),
+        ],
+        [
             InlineKeyboardButton("Regola Rinvio", callback_data='/regola_rinvio'),
             InlineKeyboardButton("Regola Infortuni Gravi", callback_data='/regola_infortuni_gravi'),
+        ],
+        [
             InlineKeyboardButton("Bonus & Malus", callback_data='/bonus_malus'),
             InlineKeyboardButton("Gestione Competizioni", callback_data='/gestione_competizioni'),
         ],
         [
             InlineKeyboardButton("Regolamento Cacio", callback_data='/regolamento')
+        ],
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    update.message.reply_text('Comandi disponibili', reply_markup=reply_markup)
+    
+def commands_sites(update: Update, context: CallbackContext) -> None:
+    """Sends a message with three inline buttons attached."""
+    keyboard = [
+        [
+            InlineKeyboardButton("Diretta", callback_data='/diretta'),
+            InlineKeyboardButton("Probabili Formazioni", callback_data='/fanta_probabili_formazioni'),
+        ],
+        [
+            InlineKeyboardButton("Regolamento Leghe Private", callback_data='/fanta_regolamento_leghe_private')
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -141,6 +159,7 @@ def main():
     
     #fantacalcio commands - tables
     dp.add_handler(CommandHandler("commands_fantacacio", commands_fantacacio))
+    dp.add_handler(CommandHandler("commands_sites", commands_sites))
     dp.add_handler(CallbackQueryHandler(button))
 
     # on noncommand i.e message - echo the message on Telegram
