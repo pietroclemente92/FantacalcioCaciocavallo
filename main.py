@@ -19,7 +19,7 @@ def start(update, context):
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Benevenuto partecipante. Io sono CacioBot, il tuo assistente personale. Se è la prima volta che mi utilizzi, clicca o scrivi /commands_fantacacio per visionare la tabella dei comandi fantacaio, altrimenti utilizza /ccomands_sites per visionare la tabella dei comandi siti.')
+    update.message.reply_text('Benevenuto partecipante. Io sono CacioBot, il tuo assistente personale. Se è la prima volta che mi utilizzi, clicca o scrivi /commands_fantacacio per visionare la tabella dei comandi fantacaio, altrimenti utilizza /comands_sites per visionare la tabella dei comandi siti.')
     
 def commands_fantacacio(update: Update, context: CallbackContext) -> None:
     """Sends a message with three inline buttons attached."""
