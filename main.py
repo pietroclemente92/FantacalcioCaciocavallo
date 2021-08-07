@@ -30,8 +30,7 @@ def commands(update: Update, context: CallbackContext) -> None:
             InlineKeyboardButton("Regolamento Cacio", callback_data='/regolamento'),
         ],
         [
-            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
-            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
+            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione')
         ],
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
