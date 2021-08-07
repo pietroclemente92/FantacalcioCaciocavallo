@@ -31,9 +31,9 @@ def commands(update: Update, context: CallbackContext) -> None:
             InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
         ],
         [
-            InlineKeyboardButton("Quotazione", callback_data='/quotazione'),
-            InlineKeyboardButton("Moduli", callback_data='/moduli'),
-            InlineKeyboardButton("Timeout Formazione", callback_data='/timeout_formazione'),
+            InlineKeyboardButton("Regola Rinvio", callback_data='/regola_rinvio'),
+            InlineKeyboardButton("Regola Infortuni Gravi", callback_data='/regola_infortuni_gravi'),
+            InlineKeyboardButton("Bonus & Malus", callback_data='/bonus_malus'),
             InlineKeyboardButton("Voto d'Ufficio", callback_data='/voto_ufficio'),
         ],
         [
@@ -78,6 +78,16 @@ def regolamento(update, context):
     
 def voto_ufficio(update, context):
     update.message.reply_text('In caso di eventuali buchi nella formazione, ogni giocatore avrà diritto ad una riserva d’ufficio dal voto 4 [giocatore di movimento e portiere].')
+
+def regola_rinvio(update, context):
+    update.message.reply_text('In caso di rinvio di una partita oltre il successivo turno di campionato, sarà assegnato il 6 d’ufficio a tutti i giocatori delle due squadre in questione.')
+    
+def regola_infortuni_gravi(update, context):
+    update.message.reply_text('In caso un giocatore subisca un infortunio che preveda la conclusione della stagione, morte, infarto che preveda la conclusione della stagione ed eventuali altri stati gravi che prevedono la conclusione della stagione, verrà tagliato dalla formazione del partecipante e può essere sostituito con un giocatore di pari o inferiore QA di acquisto.')
+    
+def bonus_malus(update, context):
+    update.message.reply_text('I bonus e i malus applicati sono i seguenti: goal segnato (+3), goal su rigore (+3), rigore sbagliato (-3), assist (+1), ammonizione (-0.5), espulsione (-1), autogoal (-3), portiere imbattuto (+1), goal subito da portiere (-1 per ognuno). Viene applicato il bonus/malus di rendimento in base al numeri di sufficienze di voti senza bonus e malus: otto (+1), nove (+2). Dieci (+3), undici (+5). I punteggi vengono invertiti in caso di tre sufficienze in giù.')
+    
     
 #fantacalcio commands - sites
 def fanta_regolamento_leghe_private(update, context):
@@ -116,6 +126,9 @@ def main():
     dp.add_handler(CommandHandler("moduli", moduli))
     dp.add_handler(CommandHandler("timeout_formazione", timeout_formazione))
     dp.add_handler(CommandHandler("voto_ufficio", voto_ufficio))
+    dp.add_handler(CommandHandler("regola_rinvio", regola_rinvio))
+    dp.add_handler(CommandHandler("regola_infortuni_gravi", regola_infortuni_gravi))
+    dp.add_handler(CommandHandler("bonus_malus", bonus_malus))
     
     dp.add_handler(CommandHandler("fanta_regolamento_leghe_private", fanta_regolamento_leghe_private))    
     dp.add_handler(CommandHandler("fanta_probabili_formazioni", fanta_probabili_formazioni))
